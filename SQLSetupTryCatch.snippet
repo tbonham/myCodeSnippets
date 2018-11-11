@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>SQLSetupTryCatch</Title>
+      <Author>
+      </Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>
+      </Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>strConn</ID>
+          <ToolTip>strConn</ToolTip>
+          <Default>strConn</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>strSQLServerName</ID>
+          <ToolTip>strSQLServerName</ToolTip>
+          <Default>strSQLServerName</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>strSQLDatabaseName</ID>
+          <ToolTip>strSQLDatabaseName</ToolTip>
+          <Default>strSQLDatabaseName</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>strSQL</ID>
+          <ToolTip>strSQL</ToolTip>
+          <Default>strSQL</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>objConn</ID>
+          <ToolTip>objConn</ToolTip>
+          <Default>objConn</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>objCmd</ID>
+          <ToolTip>objCmd</ToolTip>
+          <Default>objCmd</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>strSql</ID>
+          <ToolTip>strSql</ToolTip>
+          <Default>strSql</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp" Delimiter="$"><![CDATA[StringBuilder $strConn$ = new StringBuilder("Server=");
+$strConn$.Append($strSQLServerName$);
+$strConn$.Append(";");
+$strConn$.Append("Database=");
+$strConn$.Append($strSQLDatabaseName$);
+$strConn$.Append(";");
+$strConn$.Append("Integrated Security=True;Encrypt=True;");
+$strConn$.Append("TrustServerCertificate=True");
+
+String $strSQL$ = @"";
+
+try
+{
+    SqlConnection $objConn$ = new SqlConnection($strConn$.ToString());
+    $objConn$.Open();
+    SqlCommand $objCmd$ = new SqlCommand($strSql$, $objConn$);
+}
+catch(SqlException sqlE)
+{
+    String strErrMsg = "Error in Create Student file\n" +
+        sqlE.Message + "\n" +
+        sqlE.Source + "\n" +
+        sqlE.StackTrace + "\n";
+}
+catch (Exception e)
+{
+    String strErrMsg = "Error in Create Student file\n" +
+        e.Message + "\n" +
+        e.Source + "\n" +
+        e.StackTrace + "\n";
+}
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
